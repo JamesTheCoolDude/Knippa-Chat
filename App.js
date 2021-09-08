@@ -1,5 +1,7 @@
 var ask = prompt("What is your name?");
 var command = false;
+var messages;
+var beginning;
 var canTalk = true;
 var commands = ["/random num", "/img"];
 var commandsOutput = [function (num) { return Math.round(Math.random() * num || 100); }, function (link) { return `<img src="${link}" style="max-width=60px; max-height=60px">`}];
@@ -34,11 +36,7 @@ function loadFile (event) {
 	var image = document.createElement("img");
 	image.src = URL.createObjectURL(event.target.files[0]);
   	image.class = "uploaded";
-  	pubnub.publish({
-    		channel: channel,
-   		message:  image+"<br>"+input.value,
-    		x: (input.value = '')
-  	});
+	beginning = image;
 }
 (function() {
         var pubnub = new PubNub({
@@ -109,12 +107,12 @@ function loadFile (event) {
             }
           var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-              var messages;
               if (command == false) {
                 messages = cleanseText("<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+input.value+"</p>");
               }else {
                 messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>");
               }
+		messages = beginning + messages;
                 pubnub.publish({
                     channel: channel,
                     message:  messages,
