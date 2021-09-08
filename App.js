@@ -33,7 +33,7 @@ function showNotif (header, text) {
               obj.message = '' + "<div class='message-bar'>"+obj.message+"</div>";
               var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-              var name = obj.message.split(" ")[2].replace("style='text-transform:uppercase;'>", "").replace("</span>", "");
+              var name = obj.message.split(" ")[2].replace("style='text-transform:uppercase;'>", "").replace("</span>", "").toUpperCase();
               var content = obj.message.replace(`<div class='message-bar'><p><span style='text-transform:uppercase;'>${name}</span> Posted on ${time}`, "").replace("-", "").replace(" ", "").replace("</p></div>", "");
               if (name != ask && name != "Guest") {
                 if (Notification.permission == "granted") {
@@ -56,7 +56,7 @@ function showNotif (header, text) {
             channels: [channel]
         });
         function cleanseText(text) {   
-            text = text.replace(/(https:\/\/[^\s\n]+)/gi, "<a class='link' href = \"$1\" target = \"_blank\">$1</a>");
+            text = text.replace(/(https:\/\/[^\s\n]+)/gi, "<a class='link' href = '$1' target = \"_blank\">$1</a>");
                 
             text = text.replace(/\n/g, "<br>");
                 
