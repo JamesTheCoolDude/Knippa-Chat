@@ -38,7 +38,7 @@ function showNotif (header, text) {
               obj.message = '' + "<div class='message-bar'>"+obj.message+"</div>";
               var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-              var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").split("</span>");
+              var datas = obj.message.replace("<divclass='message-bar'><p><spanstyle='text-transform:uppercase;'>").split("</span>");
               var data = datas.replace("-", "=").split("=");
               if (name != ask && name != "Guest" && name != "CHAT-BOT") {
                 if (Notification.permission == "granted") {
