@@ -98,8 +98,10 @@ function showNotif (header, text) {
                     x: (input.value = '')
                 });
             canTalk = false;
+            input.style.background = "red";
             setTimeout(() => {
               canTalk = true;
+              input.style.background = "";
             }, 5000)
           }
         }
