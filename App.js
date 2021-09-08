@@ -41,7 +41,7 @@ function showNotif (header, text) {
                 }else if (Notification.permission != 'denied') {
                     Notification.requestPermission().then(permission => {
                         if (permission == "granted") {
-                            showNotif(`${name} Just Said -`, obj.message);
+                            showNotif(`${name} Just Said -`, content);
                         }
                     })
                 }
