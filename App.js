@@ -12,6 +12,19 @@ var channelCodes = ["8th-knippa-isd-general"];
 if (ask === "" || ask === null) {
   ask = "Guest";
 }
+function canSend (text) {
+  var spaces = 0;
+  for (var i = 0; i < text.length; i++) {
+    if (text[i] == " ") {
+      spaces++;
+    }
+  }
+  if (spaces == text.length) {
+    return false;
+  }else {
+    return true;
+  }
+}
 function showNotif (header, text) {
     const notif = new Notification(header, {
         body: text
@@ -76,7 +89,7 @@ function showNotif (header, text) {
             return text;
         }
         function show () {
-          if (input.value !== "" && canTalk) {
+          if (canSend(input.value) && canTalk) {
             command = false;
             for (var i = 0; i < commands.length; i++) {
               if (input.value.includes(commands[i])) {
