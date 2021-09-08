@@ -38,15 +38,15 @@ function showNotif (header, text) {
               obj.message = '' + "<div class='message-bar'>"+obj.message+"</div>";
               var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-              var datas = obj.message.replace("<divclass='message-bar'><p><spanstyle='text-transform:uppercase;'>", "").replace("</span>", "-");
-              var data = datas.split("-");
+              var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").replace("</span>", "-");
+              var data = datas.replace("</p></div>", "").replace(" ", "");
               if (name != ask && name != "Guest" && name != "CHAT-BOT") {
                 if (Notification.permission == "granted") {
-                    showNotif(`${data[0]} Just Said -`, data[2]);
+                    showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                 }else if (Notification.permission != 'denied') {
                     Notification.requestPermission().then(permission => {
                         if (permission == "granted") {
-                            showNotif(`${data[0]} Just Said -`, data[2]);
+                            showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                         }
                     })
                 }
