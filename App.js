@@ -5,9 +5,10 @@ function gC (c) {
   var cookies = document.cookie.split(";")
   for (var i = 0; i < cookies.length; i++) {
     if (cookies[i] == c) {
-      return cookies[i].replace(`${c}=`);
+      ret = cookies[i].replace(`${c}=`);
     }
   }
+  return ret;
 }
 alert(gC("name"));
 function gL (l) {
