@@ -1,7 +1,7 @@
 var ask = prompt("What is your name?");
 var command = false;
 var messages;
-var beginning;
+var beginning = "";
 var canTalk = true;
 var commands = ["/random num", "/img"];
 var commandsOutput = [function (num) { return Math.round(Math.random() * num || 100); }, function (link) { return "<img src="+link+" class='uploaded'>"}];
