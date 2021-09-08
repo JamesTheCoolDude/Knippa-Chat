@@ -33,10 +33,7 @@ function showNotif (header, text) {
     })
 }
 function loadFile (event) {
-	var image = document.createElement("img");
-	image.src = URL.createObjectURL(event.target.files[0]);
-  	image.class = "uploaded";
-	beginning = image;
+	beginning = "<img class='uploaded' src="+URL.createObjectURL(event.target.files[0])+">
 }
 (function() {
         var pubnub = new PubNub({
@@ -112,7 +109,7 @@ function loadFile (event) {
               }else {
                 messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>");
               }
-		messages = beginning + messages;
+		messages = messages + beginning;
                 pubnub.publish({
                     channel: channel,
                     message:  messages,
