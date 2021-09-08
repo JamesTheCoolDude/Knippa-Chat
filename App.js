@@ -89,7 +89,7 @@ function showNotif (header, text) {
               if (command == false) {
                 messages = cleanseText("<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+input.value+"</p>");
               }else {
-                messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandOutput[commandIndex]()+"</p>");
+                messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex]()+"</p>");
               }
                 pubnub.publish({
                     channel: channel,
