@@ -1,7 +1,7 @@
 var ask = prompt("What is your name?");
 changeName = () => {
   var promp = prompt("What is your new name?");
-  ask = prompt;
+  ask = promp;
 };
 var channelCodes = ["8th-knippa-isd-general"];
 if (ask === "" || ask === null) {
