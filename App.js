@@ -85,19 +85,17 @@ function showNotif (header, text) {
             }
           var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+              var messages;
               if (command == false) {
-                pubnub.publish({
-                    channel: channel,
-                    message:  cleanseText("<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+input.value+"</p>"),
-                    x: (input.value = '')
-                });
+                messages = cleanseText("<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+input.value+"</p>");
               }else {
+                messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandOutput[commandIndex]()+"</p>");
+              }
                 pubnub.publish({
                     channel: channel,
-                    message:  cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandOutput[commandIndex]()+"</p>"),
+                    message:  messages,
                     x: (input.value = '')
                 });
-              }
           }
         }
         input.addEventListener('keyup', function(e) {
