@@ -1,29 +1,9 @@
-var ask;
+var ask = prompt("What is your name?");
+changeName = () => {
+  var promp = prompt("What is your new name?");
+  ask = prompt;
+};
 var channelCodes = ["8th-knippa-isd-general"];
-function gC (c) {
-  var ret = null;
-  var cookies = document.cookie.split(";")
-  for (var i = 0; i < cookies.length; i++) {
-    if (cookies[i] == c) {
-      ret = cookies[i].replace(`${c}=`);
-    }
-  }
-  return ret;
-}
-if (gC("name") == null) {
-  ask = prompt("Name?");
-}else {
-  ask = gC("name");
-}
-function gL (l) {
-  var ret = null;
-  var link = window.location.href.split("?")[1].split(";")
-  for (var i = 0; i < link.length; i++) {
-    if (link[i] == l) {
-      return link[i].replace(`${l}=`);
-    }
-  }
-}
 if (ask === "" || ask === null) {
   ask = "Guest";
 }
