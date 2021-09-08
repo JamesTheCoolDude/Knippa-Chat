@@ -33,7 +33,7 @@ function showNotif (header, text) {
     })
 }
 function loadFile (event) {
-	beginning = "<img class='uploaded' src="+URL.createObjectURL(event.target.files[0])+">
+	beginning = "<img class='uploaded' src="+URL.createObjectURL(event.target.files[0])+">";
 }
 (function() {
         var pubnub = new PubNub({
