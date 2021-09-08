@@ -2,7 +2,7 @@ var ask = prompt("What is your name?");
 var command = false;
 var canTalk = true;
 var commands = ["/random num", "/img"];
-var commandsOutput = [function (num) { return Math.round(Math.random() * num || 100); }, function (link) { return `<img src=${link} style="max-width=60px; max-height=60px">`}];
+var commandsOutput = [function (num) { return Math.round(Math.random() * num || 100); }, function (link) { return `<img src="${link}" style="max-width=60px; max-height=60px">`}];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
