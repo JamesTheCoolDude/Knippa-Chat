@@ -69,6 +69,16 @@ function showNotif (header, text) {
               document.getElementById("alert").style.display = "none";
             }
         });
+        function loadFile (event) {
+	var image = document.createElement("img");
+	image.src = URL.createObjectURL(event.target.files[0]);
+  image.class = "uploaded";
+  pubnub.publish({
+    channel: channel,
+    message:  image+"<br>"+input.value,
+    x: (input.value = '')
+  });
+};
         box.innerHTML = "<p style='text-align:center;color:red;font-size:30px;font-family:impact;'id='alert'>No chat content here!</p>"
         pubnub.subscribe({
             channels: [channel]
