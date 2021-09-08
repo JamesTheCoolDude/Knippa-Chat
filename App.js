@@ -38,7 +38,8 @@ function showNotif (header, text) {
               obj.message = '' + "<div class='message-bar'>"+obj.message+"</div>";
               var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-              var data = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>").split("</span>").replace("-", "=").split("=");
+              var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").split("</span>");
+              var data = datas.replace("-", "=").split("=");
               if (name != ask && name != "Guest" && name != "CHAT-BOT") {
                 if (Notification.permission == "granted") {
                     showNotif(`${data[0]} Just Said -`, data[2]);
