@@ -8,7 +8,7 @@ changeName = () => {
   var promp = prompt("What is your new name?");
   ask = promp;
 };
-var channelCodes = ["8th-knippa-isd-general"];
+var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 if (ask === "" || ask === null) {
   ask = "Guest";
 }
@@ -29,6 +29,16 @@ function showNotif (header, text) {
     const notif = new Notification(header, {
         body: text
     })
+}
+function loadFile (event) {
+	var image = document.createElement("img");
+	image.src = URL.createObjectURL(event.target.files[0]);
+  	image.class = "uploaded";
+  	pubnub.publish({
+    		channel: channel,
+   		message:  image+"<br>"+input.value,
+    		x: (input.value = '')
+  	});
 }
 (function() {
         var pubnub = new PubNub({
@@ -69,16 +79,6 @@ function showNotif (header, text) {
               document.getElementById("alert").style.display = "none";
             }
         });
-        function loadFile (event) {
-	var image = document.createElement("img");
-	image.src = URL.createObjectURL(event.target.files[0]);
-  image.class = "uploaded";
-  pubnub.publish({
-    channel: channel,
-    message:  image+"<br>"+input.value,
-    x: (input.value = '')
-  });
-};
         box.innerHTML = "<p style='text-align:center;color:red;font-size:30px;font-family:impact;'id='alert'>No chat content here!</p>"
         pubnub.subscribe({
             channels: [channel]
