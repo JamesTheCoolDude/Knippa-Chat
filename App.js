@@ -1,19 +1,8 @@
 var ask = prompt("What is your name?");
 var command = false;
 var canTalk = true;
-var change = document.getElementById("change");
 var commands = ["/random num"];
 var commandsOutput = [function () { return Math.round(Math.random() * 100); }];
-var blocked = [];
-var cookies = document.cookies.split(";");
-setInterval(() => {
-  for (var i = 0; i < cookies.length; i++) {
-    if (cookies[i].includes("blocked=true")) {
-      change.style.display = "none";
-      canTalk = false;
-    }
-  }
-}, 1000)
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
@@ -51,11 +40,6 @@ function showNotif (header, text) {
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
               var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").replace("</span>", "-");
               var data = datas.replace("</p></div>", "").replace(" ", "");
-              for (var i = 0; i < blocked.length; i++) {
-                if (blocked[i].toLowerCase() == ask.toLowerCase()) {
-                  document.cookie = "blocked=true";
-                }
-              }
               if (name != ask && name != "Guest" && name != "CHAT-BOT") {
                 if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
