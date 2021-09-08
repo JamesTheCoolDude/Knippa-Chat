@@ -1,5 +1,6 @@
 var ask = prompt("What is your name?");
 var command = false;
+var canTalk = true;
 var commands = ["/random num"];
 var commandsOutput = [function () { return Math.round(Math.random() * 100); }];
 var commandIndex = 0;
@@ -37,15 +38,14 @@ function showNotif (header, text) {
               obj.message = '' + "<div class='message-bar'>"+obj.message+"</div>";
               var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-              var name = obj.message.split(" ")[2].replace("style='text-transform:uppercase;'>", "").replace("</span>", "").toUpperCase();
-              var content = obj.message.replace(`<div class='message-bar'><p><span style='text-transform:uppercase;'>${name}</span> Posted on ${time}`, "").replace("-", "").replace(" ", "").replace("</p></div>", "");
+              var data = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>").split("</span>").replace("-", "=").split("=");
               if (name != ask && name != "Guest" && name != "CHAT-BOT") {
                 if (Notification.permission == "granted") {
-                    showNotif(`${name} Just Said -`, content);
+                    showNotif(`${data[0]} Just Said -`, data[2]);
                 }else if (Notification.permission != 'denied') {
                     Notification.requestPermission().then(permission => {
                         if (permission == "granted") {
-                            showNotif(`${name} Just Said -`, content);
+                            showNotif(`${data[0]} Just Said -`, data[2]);
                         }
                     })
                 }
@@ -75,7 +75,7 @@ function showNotif (header, text) {
             return text;
         }
         function show () {
-          if (input.value !== "") {
+          if (input.value !== "" && canTalk) {
             command = false;
             for (var i = 0; i < commands.length; i++) {
               if (input.value.includes(commands[i])) {
@@ -96,6 +96,10 @@ function showNotif (header, text) {
                     message:  messages,
                     x: (input.value = '')
                 });
+            canTalk = false;
+            setTimeout(() => {
+              canTalk = true;
+            }, 5000)
           }
         }
         input.addEventListener('keyup', function(e) {
