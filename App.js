@@ -1,4 +1,5 @@
 var ask = prompt("Name?");
+var channelCodes = ["8th-knippa-isd-general"];
 function gC (c) {
   var ret = null;
   var cookies = document.cookie.split(";")
@@ -8,6 +9,7 @@ function gC (c) {
     }
   }
 }
+alert(gC("name"));
 function gL (l) {
   var ret = null;
   var link = window.location.href.split("?")[1].split(";")
@@ -20,14 +22,10 @@ function gL (l) {
 if (ask === "" || ask === null) {
   ask = "Guest";
 }
-var ping = new Audio("ping.mp3");
 function showNotif (header, text) {
     const notif = new Notification(header, {
         body: text
     })
-    notif.onclick = (e) => {
-      window.location.href = "https://chat-app-1.jamesdacooldude.repl.co/";
-    }
 }
 (function() {
         var pubnub = new PubNub({
@@ -37,10 +35,14 @@ function showNotif (header, text) {
         function $(id) {
             return document.getElementById(id);
         }
+        var pages = document.getElementById("pages");
         var name = "Guest";
         var box = $('box'),
             input = $('input'),
-            channel = '78801-victor-james-friend-chat-000000001';
+            channel = '8th-knippa-isd-general';
+        setInterval(() => {
+          channel = channelCodes[pages.selectedIndex];
+        }, 1000)
         pubnub.addListener({
             message: function(obj) {
               obj.message = '' + "<div class='message-bar'>"+obj.message+"</div>";
@@ -49,7 +51,6 @@ function showNotif (header, text) {
               var name = obj.message.split(" ")[2].replace("style='text-transform:uppercase;'>", "").replace("</span>", "");
               var content = obj.message.replace(`<div class='message-bar'><p><span style='text-transform:uppercase;'>${name}</span> Posted on ${time}`, "").replace("-", "").replace(" ", "").replace("</p></div>", "");
               if (name != ask && name != "Guest") {
-                ping.play();
                 if (Notification.permission == "granted") {
                     showNotif(`${name} Just Said -`, content);
                 }else if (Notification.permission != 'denied') {
