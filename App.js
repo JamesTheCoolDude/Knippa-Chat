@@ -1,8 +1,8 @@
 var ask = prompt("What is your name?");
 var command = false;
 var canTalk = true;
-var commands = ["/random num"];
-var commandsOutput = [function () { return Math.round(Math.random() * 100); }];
+var commands = ["/random num", "/img"];
+var commandsOutput = [function (num) { return Math.round(Math.random() * num || 100); }, function (link) { return `<img src=${link} style="max-width=60px; max-height=60px">`}];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
@@ -90,7 +90,7 @@ function showNotif (header, text) {
               if (command == false) {
                 messages = cleanseText("<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+input.value+"</p>");
               }else {
-                messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex]()+"</p>");
+                messages = cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>");
               }
                 pubnub.publish({
                     channel: channel,
