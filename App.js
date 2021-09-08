@@ -1,4 +1,8 @@
 var ask = prompt("What is your name?");
+var command = false;
+var commands = ["/random num"];
+var commandsOutput = [function () { return Math.round(Math.random() * 100); }];
+var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
   ask = promp;
@@ -35,7 +39,7 @@ function showNotif (header, text) {
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
               var name = obj.message.split(" ")[2].replace("style='text-transform:uppercase;'>", "").replace("</span>", "").toUpperCase();
               var content = obj.message.replace(`<div class='message-bar'><p><span style='text-transform:uppercase;'>${name}</span> Posted on ${time}`, "").replace("-", "").replace(" ", "").replace("</p></div>", "");
-              if (name != ask && name != "Guest") {
+              if (name != ask && name != "Guest" && name != "CHAT-BOT") {
                 if (Notification.permission == "granted") {
                     showNotif(`${name} Just Said -`, content);
                 }else if (Notification.permission != 'denied') {
@@ -72,13 +76,28 @@ function showNotif (header, text) {
         }
         function show () {
           if (input.value !== "") {
+            command = false;
+            for (var i = 0; i < commands.length; i++) {
+              if (input.value.includes(commands[i])) {
+                command = true;
+                commandIndex = i;
+              }
+            }
           var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+              if (command == false) {
                 pubnub.publish({
                     channel: channel,
                     message:  cleanseText("<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+input.value+"</p>"),
                     x: (input.value = '')
                 });
+              }else {
+                pubnub.publish({
+                    channel: channel,
+                    message:  cleanseText("<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandOutput[commandIndex]()+"</p>"),
+                    x: (input.value = '')
+                });
+              }
           }
         }
         input.addEventListener('keyup', function(e) {
