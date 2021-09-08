@@ -1,4 +1,4 @@
-var ask = prompt("Name?");
+var ask;
 var channelCodes = ["8th-knippa-isd-general"];
 function gC (c) {
   var ret = null;
@@ -10,7 +10,11 @@ function gC (c) {
   }
   return ret;
 }
-alert(gC("name"));
+if (gC("name") == null) {
+  ask = prompt("Name?");
+}else {
+  ask = gC("name");
+}
 function gL (l) {
   var ret = null;
   var link = window.location.href.split("?")[1].split(";")
