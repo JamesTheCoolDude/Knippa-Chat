@@ -4,7 +4,7 @@ var messages;
 var beginning = "";
 var canTalk = true;
 var commands = ["/random num", "/img"];
-var commandsOutput = [function (num) { return Math.round(Math.random() * num || 100); }, function (link) { return "<img src="+link+" class='uploaded'>"}];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<img src="+link+" class='uploaded'>"}];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
