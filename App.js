@@ -98,6 +98,10 @@ function loadFile (event) {
             text = text.replace(/```([^`]+)```/g, "<code>$1</code>");
                 
             text = text.replace(/\`([^\`]+)\`/g, "<code style = \"display : inline;\">$1</code>");
+		
+	    for (var i = 0; i < text.length; i += 40) {
+	    	text = text[i] += "<br>";
+	    }
 
             return text;
         }
