@@ -56,6 +56,9 @@ function previewFile() {
     reader.readAsDataURL(file);
   }
 }
+setInterval(() => {
+	previewFile();
+}, 1000)
 (function() {
         var pubnub = new PubNub({
             publishKey: 'demo',
