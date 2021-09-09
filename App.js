@@ -80,7 +80,11 @@ function previewFile() {
 	      var lower = obj.message.toLowerCase();
 	      var name = ask.toLowerCase();
 	      if (lower.includes("@"+name)) {
-	      	messagebar[messagebar.length - 1].classList.add("ping");
+		if (messagebar.length > 0) {
+	      		messagebar[messagebar.length - 1].classList.add("ping");
+		}else {
+			messagebar[0].classList.add("ping");
+		}
            	if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                 }else if (Notification.permission != 'denied') {
