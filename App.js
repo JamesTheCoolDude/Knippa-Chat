@@ -2,6 +2,7 @@ var ask = prompt("What is your name?");
 var command = false;
 var messages;
 var beginning = "";
+var unread = 0;
 var canTalk = true;
 var commands = ["/random num", "/img"];
 var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<img src="+link+" class='uploaded'>"}];
@@ -14,6 +15,12 @@ var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 if (ask === "" || ask === null) {
   ask = "Guest";
 }
+function markasread () {
+	unread = 0;
+}
+setInterval(() => {
+	document.title = "Chat App("+unread+")";
+}, 1000)
 function canSend (text) {
   var spaces = 0;
   for (var i = 0; i < text.length; i++) {
@@ -59,6 +66,7 @@ function loadFile (event) {
               var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").replace("</span>", "-");
               var data = datas.replace("</p></div>", "").replace(" ", "");
               if (name != ask && name != "Guest" && name != "CHAT-BOT") {
+			unread++;
                 if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                 }else if (Notification.permission != 'denied') {
