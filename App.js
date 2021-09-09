@@ -15,11 +15,6 @@ changeName = () => {
   var promp = prompt("What is your new name?");
   ask = promp;
 };
-for (var i = 0; i < uploaded.length; i++) {
-	uploaded[i].addEventListener('click', function () {
-		window.open(uploaded[i].src);
-	})
-}
 var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 if (ask === "" || ask === null) {
   ask = "Guest";
@@ -53,7 +48,7 @@ function previewFile() {
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
-    beginning = "<img src="+reader.result+" class='uploaded'>";
+    beginning = "<img src="+reader.result+" class='uploaded' onclick='window.open("+reader.result+");'>";
   }, false);
 
   if (file) {
