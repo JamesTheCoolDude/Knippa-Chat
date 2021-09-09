@@ -11,21 +11,6 @@ changeName = () => {
   var promp = prompt("What is your new name?");
   ask = promp;
 };
-const myForm = document.getElementById("myForm");
-const inpFile = document.getElementById("inpFile");
-myForm.addEventListener("submit", function (e) {
-	e.preventDefault();
-	
-	const endpoint = "upload.php";
-	const formData = new FormData();
-	
-	formData.append("inpFile", inpFile.files[0]);
-	
-	fetch(endpoint, {
-		method: "post",
-		body: formData
-	}).catch(console.error);
-})
 var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 if (ask === "" || ask === null) {
   ask = "Guest";
