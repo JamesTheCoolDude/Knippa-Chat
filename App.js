@@ -2,6 +2,8 @@ var ask = prompt("What is your name?");
 var command = false;
 var messages;
 var beginning = "";
+var sensor = ["fuck", "shit", "ass"];
+var sensorRep = ["****", "****", "***"];
 var unread = 0;
 var canTalk = true;
 var commands = ["/random num", "/img"];
@@ -39,8 +41,17 @@ function showNotif (header, text) {
         body: text
     })
 }
-function loadFile (event) {
-	beginning = "<img class='uploaded' src="+URL.createObjectURL(event.target.files[0])+">";
+function previewFile() {
+  var file = document.querySelector('input[type=file]').files[0];
+  var reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    beginning = "<img src="+reader.result+" class='uploaded'>";
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
 }
 (function() {
         var pubnub = new PubNub({
@@ -98,6 +109,10 @@ function loadFile (event) {
             text = text.replace(/```([^`]+)```/g, "<code>$1</code>");
                 
             text = text.replace(/\`([^\`]+)\`/g, "<code style = \"display : inline;\">$1</code>");
+		
+	    for (var i = 0; i < sensor.length; i++) {
+	    	text = text.replace(sensor[i], sensorRep[i]);
+	    }
 
             return text;
         }
