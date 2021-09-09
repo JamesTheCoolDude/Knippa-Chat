@@ -66,8 +66,8 @@
     background: linear-gradient(131deg, rgba(87,181,200,1) 6%, rgba(25,106,122,1) 100%);
   }
 .uploaded {
-    max-width:70px;
-    max-height:70px;
+    max-width:500px;
+    max-height:300px;
 }
 #file {
   color: transparent;
