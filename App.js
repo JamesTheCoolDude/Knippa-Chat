@@ -1,5 +1,6 @@
 var ask = prompt("What is your name?");
 var command = false;
+var messagebar = document.getElementsByClassName("message-bar");
 var messages;
 var beginning = "";
 var sensor = ["fuck", "shit", "ass"];
@@ -76,9 +77,11 @@ function previewFile() {
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
               var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").replace("</span>", "-");
               var data = datas.replace("</p></div>", "").replace(" ", "");
-              if (data.split("-")[0].toLowerCase() != ask.toLowerCase()) {
-			unread++;
-                if (Notification.permission == "granted") {
+	      var lower = obj.message.toLowerCase();
+	      var name = ask.toLowerCase();
+	      if (lower.includes("@"+name)) {
+	      	messagebar[messagebar.length - 1].classList.add("ping");
+           	if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                 }else if (Notification.permission != 'denied') {
                     Notification.requestPermission().then(permission => {
@@ -87,6 +90,9 @@ function previewFile() {
                         }
                     })
                 }
+	      }
+              if (data.split("-")[0].toLowerCase() != ask.toLowerCase() && data.split("-")[0].toLowerCase() != "guest" && data.split("-")[0].toLowerCase() != "chat-bot") {
+	      	unread++;
               }
               box.innerHTML = box.innerHTML + obj.message;
               box.scrollTop = box.scrollHeight;
