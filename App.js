@@ -48,7 +48,7 @@ function previewFile() {
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
-    beginning = "<img src="+reader.result+" class='uploaded' onclick='window.open(""+reader.result+"");'>";
+    beginning = "<img src="+reader.result+" class='uploaded'>";
   }, false);
 
   if (file) {
