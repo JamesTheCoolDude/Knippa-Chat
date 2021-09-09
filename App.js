@@ -86,11 +86,13 @@ function previewFile() {
 	      var lower = obj.message.toLowerCase();
 	      var name = ask.toLowerCase();
 	      if (lower.includes("@"+name)) {
-		if (messagebar.length > 0) {
-	      		messagebar[messagebar.length - 1].style.background = "orange";
-		}else {
-			messagebar[0].style.background = "orange";
-		}
+		setTimeout(() => {
+			if (messagebar.length > 0) {
+	      			messagebar[messagebar.length - 1].style.background = "orange";
+			}else {
+				messagebar[0].style.background = "orange";
+			}
+		}, 1500)
            	if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                 }else if (Notification.permission != 'denied') {
