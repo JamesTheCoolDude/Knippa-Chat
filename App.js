@@ -157,7 +157,7 @@ function previewFile() {
             setTimeout(() => {
               canTalk = true;
               input.style.background = "";
-            }, 25)
+            }, 5000)
           }
         }
         input.addEventListener('keyup', function(e) {
