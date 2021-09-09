@@ -48,7 +48,7 @@ function previewFile() {
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
-    beginning = "<img src="+reader.result+" class='uploaded' onclick='window.open("+reader.result+");'>";
+    beginning = "<img src="+reader.result+" class='uploaded' onclick='window.open(""+reader.result+"");'>";
   }, false);
 
   if (file) {
@@ -87,7 +87,7 @@ function previewFile() {
 			}else {
 				messagebar[0].style.background = "orange";
 			}
-		}, 1500)
+		}, 25)
            	if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
                 }else if (Notification.permission != 'denied') {
