@@ -130,7 +130,7 @@ function previewFile() {
               if (command == false) {
                 messages = "<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+cleanseText(input.value)+"</p>";
               }else {
-                messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value)+"</p>";
+                messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>";
               }
 		messages = messages + beginning;
                 pubnub.publish({
