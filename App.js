@@ -65,7 +65,7 @@ function loadFile (event) {
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
               var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").replace("</span>", "-");
               var data = datas.replace("</p></div>", "").replace(" ", "");
-              if (name != ask && name != "Guest" && name != "CHAT-BOT") {
+              if (data.split("-")[2] != ask && data.split("-")[2] != "Guest" && data.split("-")[2] != "CHAT-BOT") {
 			unread++;
                 if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
