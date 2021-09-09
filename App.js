@@ -9,7 +9,7 @@ var sensorRep = ["****", "****", "***"];
 var unread = 0;
 var canTalk = true;
 var commands = ["/random num", "/img"];
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<img src="+link+" class='uploaded'>"}];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
@@ -123,9 +123,11 @@ function previewFile() {
                 
             text = text.replace(/\`([^\`]+)\`/g, "<code style = \"display : inline;\">$1</code>");
 		
-	    for (var i = 0; i < sensor.length; i++) {
-	    	text = text.replace(sensor[i], sensorRep[i]);
-	    }
+	    setInterval(() => {
+	    	for (var i = 0; i < sensor.length; i++) {
+	    		text = text.replace(sensor[i], sensorRep[i]);
+	    	}
+	    }, 10)
 
             return text;
         }
