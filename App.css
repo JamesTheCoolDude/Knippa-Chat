@@ -3,23 +3,21 @@
     overflow-x:hidden;
   }
   .message-bar:nth-of-type(odd) {
-    background:lightblue;
-    left:5%;
-    margin-top:5%;
+    background:grey;
+    color:white;
   }
   .message-bar:nth-of-type(even) {
-    background:grey;
-    left:60%;
-    margin-top:5%;
+    background:black;
     color:white;
-  
   }
   .message-bar {
-    max-width:30%;
     position:relative;
     padding:10px 15px;
-    border-radius:10px;
+    overflow:hidden;
   }
+.mesage-bar.ping {
+    backround:orange;
+}
   #content {
     width:50%;
     border:solid 2px;
@@ -102,3 +100,4 @@
 #file:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
 }
+
