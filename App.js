@@ -1,5 +1,6 @@
 var ask = prompt("What is your name?");
 var command = false;
+var canPing = true;
 var messagebar = document.getElementsByClassName("message-bar");
 var uploaded = document.getElementsByClassName("uploaded");
 var messages;
@@ -32,10 +33,10 @@ function canSend (text) {
       spaces++;
     }
   }
-  if (spaces == text.length) {
-    return false;
+  if (spaces < text.length && ((text.includes("@") && canPing) || !text.includes("@"))) {
+  	return true;
   }else {
-    return true;
+  	return false;
   }
 }
 function showNotif (header, text) {
@@ -147,6 +148,12 @@ function previewFile() {
               }else {
                 messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>";
               }
+		  if (messages.includes("@")) {
+		  	canPing = false;
+			setTimeout(() => {
+				canPing = true;
+			}, 60000)
+		  }
 		messages = messages + beginning;
                 pubnub.publish({
                     channel: channel,
