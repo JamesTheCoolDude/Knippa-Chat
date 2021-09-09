@@ -64,8 +64,8 @@ function loadFile (event) {
               var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
               var datas = obj.message.replace("<div class='message-bar'><p><span style='text-transform:uppercase;'>", "").replace("</span>", "-");
-              var data = datas.replace("</p></div>", "").replace(" ", "").toLowerCase();
-              if (data.split("-")[2] != ask.toLowerCase()) {
+              var data = datas.replace("</p></div>", "").replace(" ", "");
+              if (data.split("-")[0].toLowerCase() != ask.toLowerCase()) {
 			unread++;
                 if (Notification.permission == "granted") {
                     showNotif(`${data.split("-")[0]} Just Said -`, data.split("-")[2]);
