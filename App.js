@@ -98,10 +98,6 @@ function loadFile (event) {
             text = text.replace(/```([^`]+)```/g, "<code>$1</code>");
                 
             text = text.replace(/\`([^\`]+)\`/g, "<code style = \"display : inline;\">$1</code>");
-		
-	    for (var i = 0; i < text.length; i += 40) {
-	    	text = text[i] += "<br>";
-	    }
 
             return text;
         }
@@ -119,7 +115,7 @@ function loadFile (event) {
               if (command == false) {
                 messages = "<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+cleanseText(input.value)+"</p>";
               }else {
-                messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+cleanseText(commandsOutput[commandIndex]())+"</p>";
+                messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value)+"</p>";
               }
 		messages = messages + beginning;
                 pubnub.publish({
