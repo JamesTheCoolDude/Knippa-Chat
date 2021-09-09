@@ -28,8 +28,21 @@ if (ask === "" || ask === null) {
 function markasread () {
 	unread = 0;
 }
+function previewFile() {
+  var file = document.querySelector('input[type=file]').files[0];
+  var reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    beginning = "<img src="+reader.result+" class='uploaded'>";
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
 setInterval(() => {
 	document.title = "Chat App("+unread+")";
+	previewFile();
 }, 1000)
 function canSend (text) {
   var spaces = 0;
@@ -49,21 +62,7 @@ function showNotif (header, text) {
         body: text
     })
 }
-function previewFile() {
-  var file = document.querySelector('input[type=file]').files[0];
-  var reader = new FileReader();
 
-  reader.addEventListener("load", function () {
-    beginning = "<img src="+reader.result+" class='uploaded'>";
-  }, false);
-
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-}
-setInterval(() => {
-	previewFile();
-}, 1000)
 (function() {
         var pubnub = new PubNub({
             publishKey: 'demo',
