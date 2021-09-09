@@ -16,7 +16,7 @@ function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
 }
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"} function (name) { createChannel(name); }];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
