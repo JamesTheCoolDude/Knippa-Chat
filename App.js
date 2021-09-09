@@ -1,6 +1,7 @@
 var ask = prompt("What is your name?");
 var command = false;
 var messagebar = document.getElementsByClassName("message-bar");
+var uploaded = document.getElementsByClassName("uploaded");
 var messages;
 var beginning = "";
 var sensor = ["fuck", "shit", "ass"];
@@ -14,6 +15,11 @@ changeName = () => {
   var promp = prompt("What is your new name?");
   ask = promp;
 };
+for (var i = 0; i < uploaded.length; i++) {
+	uploaded[i].addEventListener('click', function () {
+		window.open(uploaded[i].src);
+	})
+}
 var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 if (ask === "" || ask === null) {
   ask = "Guest";
