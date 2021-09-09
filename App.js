@@ -13,7 +13,7 @@ changeName = () => {
 };
 const myForm = document.getElementById("myForm");
 const inpFile = document.getElementById("inpFile");
-myForm.addEventListener("submit", e => {
+myForm.addEventListener("submit", function (e) {
 	e.preventDefault();
 	
 	const endpoint = "upload.php";
