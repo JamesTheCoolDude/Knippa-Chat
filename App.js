@@ -1,6 +1,7 @@
 var ask = prompt("What is your name?");
 var command = false;
 var canPing = true;
+var input = document.getElementById("input");
 var messagebar = document.getElementsByClassName("message-bar");
 var uploaded = document.getElementsByClassName("uploaded");
 var messages;
@@ -63,7 +64,13 @@ function showNotif (header, text) {
         body: text
     })
 }
-
+document.getElementById('docs').addEventListener('change', function() {
+	var fr = new FileReader();
+        fr.onload = function(){
+        	input.value = fr.result;
+        }
+        fr.readAsText(this.files[0]);
+})
 (function() {
         var pubnub = new PubNub({
             publishKey: 'demo',
