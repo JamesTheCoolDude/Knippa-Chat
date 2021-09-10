@@ -6,7 +6,6 @@ var uploaded = document.getElementsByClassName("uploaded");
 var messages;
 var beginning = "";
 var sensor = ["fuck", "shit", "ass"];
-var sensorRep = ["****", "****", "***"];
 var unread = 0;
 var canTalk = true;
 var commands = ["/random num", "/img", "/create", "/solve", "/doc"];
@@ -145,7 +144,7 @@ function showNotif (header, text) {
 		
 	    for (var i = 0; i < sensor.length; i++) {
 		if (text.includes(sensor[i])) {
-			text = `<p onclick='this.innerHTML = ${text}'>This message is hidden! Wana show it?</p>`;
+			text = `<p onclick='this.innerHTML = ${text}' class='link'>This message is hidden! Wana show it?</p>`;
 		}
 	    }
 
