@@ -64,13 +64,13 @@ function showNotif (header, text) {
         body: text
     })
 }
-document.getElementById('docs').addEventListener('change', function() {
+function textFile () {
 	var fr = new FileReader();
         fr.onload = function(){
         	input.value = fr.result;
         }
         fr.readAsText(this.files[0]);
-})
+}
 (function() {
         var pubnub = new PubNub({
             publishKey: 'demo',
