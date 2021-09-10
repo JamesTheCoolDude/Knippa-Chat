@@ -12,21 +12,11 @@ var commands = ["/random num", "/img", "/create", "/solve", "/doc"];
 var Fraction = algebra.Fraction;
 var Expression = algebra.Expression;
 var Equation = algebra.Equation;
-function solves (eq, solve) {
-	var equations = eq.split("=");
-	var expr1 = algebra.parse(equations[0]); 
-	var expr2 = algebra.parse(equations[1]); 
-	var equation = new Equation(expr1, expr2);
-	return equation.toString().solveFor(solve);
-}
 var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 var pages = document.getElementById("pages");
 function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
-}
-function nameLink (name) {
-	return `<a href="javascript:input.value = @${name};">${name}</a>`;
 }
 var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit`; } ];
 var commandIndex = 0;
@@ -141,12 +131,6 @@ function showNotif (header, text) {
             text = text.replace(/(https:\/\/[^\s\n]+)/gi, "<a class='link' href = '$1' target = \"_blank\">$1</a>");
                 
             text = text.replace(/\n/g, "<br>");
-		
-	    for (var i = 0; i < sensor.length; i++) {
-		if (text.includes(sensor[i])) {
-			text = `<p onclick='this.innerHTML = ${text}' class='link'>This message is hidden! Wana show it?</p>`;
-		}
-	    }
 
             return text;
         }
@@ -162,7 +146,7 @@ function showNotif (header, text) {
           var today = new Date();
               var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
               if (command == false) {
-                messages = "<p><span style='text-transform:uppercase;'>"+nameLink(ask)+"</span> Posted on "+time+"- "+cleanseText(input.value)+"</p>";
+                messages = "<p><span style='text-transform:uppercase;'>"+ask+"</span> Posted on "+time+"- "+cleanseText(input.value)+"</p>";
               }else {
                 messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>";
               }
