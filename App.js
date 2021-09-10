@@ -9,7 +9,7 @@ var sensor = ["fuck", "shit", "ass"];
 var sensorRep = ["****", "****", "***"];
 var unread = 0;
 var canTalk = true;
-var commands = ["/random num", "/img", "/create", "/solve"];
+var commands = ["/random num", "/img", "/create", "/solve", "/doc"];
 var Fraction = algebra.Fraction;
 var Expression = algebra.Expression;
 var Equation = algebra.Equation;
@@ -26,7 +26,7 @@ function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
 }
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit`; } ];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
@@ -139,15 +139,7 @@ function showNotif (header, text) {
             text = text.replace(/(https:\/\/[^\s\n]+)/gi, "<a class='link' href = '$1' target = \"_blank\">$1</a>");
                 
             text = text.replace(/\n/g, "<br>");
-                
-            text = text.replace(/\_([^\_]+)\_/g, "<em>$1</em>");
-                
-            text = text.replace(/\*([^\*]+)\*/g, "<strong>$1</strong>");
-                
-            text = text.replace(/```([^`]+)```/g, "<code>$1</code>");
-                
-            text = text.replace(/\`([^\`]+)\`/g, "<code style = \"display : inline;\">$1</code>");
-		
+        
 	    setInterval(() => {
 	    	for (var i = 0; i < sensor.length; i++) {
 	    		text = text.replace(sensor[i], sensorRep[i]);
