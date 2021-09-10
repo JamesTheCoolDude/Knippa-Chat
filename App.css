@@ -69,13 +69,13 @@
     max-width:600px;
     max-height:400px;
 }
-#file {
+.file {
   color: transparent;
 }
-#file::-webkit-file-upload-button {
+.file::-webkit-file-upload-button {
   visibility: hidden;
 }
-#file::before {
+.file::before {
   content: 'Select some files';
   color: black;
   display: inline-block;
@@ -91,13 +91,13 @@
   font-weight: 700;
   font-size: 10pt;
 }
-#file:hover::before {
+.file:hover::before {
   border-color: black;
 }
-#file:active {
+.file:active {
   outline: 0;
 }
-#file:active::before {
+.file:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
 }
 .link {
