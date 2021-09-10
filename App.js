@@ -15,7 +15,7 @@ function algebra (eq, solve) {
 	var expr1 = algebra.parse(equations[0]); 
 	var expr2 = algebra.parse(equations[1]); 
 	var equation = new Equation(expr1, expr2);
-	return equation.solveFor(solve);
+	return equation.toString().solveFor(solve);
 }
 var channelCodes = ["8th-knippa-isd-general", "8th-knippa-isd-general-Studies"];
 var pages = document.getElementById("pages");
