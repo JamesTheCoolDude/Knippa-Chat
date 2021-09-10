@@ -164,7 +164,7 @@ function showNotif (header, text) {
               if (command == false) {
                 messages = "<p><span style='text-transform:uppercase;'>"+nameLink(ask)+"</span> Posted on "+time+"- "+cleanseText(input.value)+"</p>";
               }else {
-                messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+cleanseText(commandsOutput[commandIndex](input.value.replace(commands[commandIndex], "")))+"</p>";
+                messages = "<p><span style='text-transform:uppercase;'>CHAT-BOT</span> Posted on "+time+"- "+commandsOutput[commandIndex](input.value.replace(commands[commandIndex], ""))+"</p>";
               }
 		  if (messages.includes("@")) {
 		  	canPing = false;
