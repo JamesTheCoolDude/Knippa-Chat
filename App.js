@@ -97,7 +97,7 @@ function showNotif (header, text) {
               var data = datas.replace("</p></div>", "").replace(" ", "");
 	      var lower = obj.message.toLowerCase();
 	      var name = ask.toLowerCase();
-	      if (lower.includes("@"+name && !lower.includes("/private"))) {
+	      if (lower.includes("@"+name) && !lower.includes("@everyone")) {
 		setTimeout(() => {
 			if (messagebar.length > 0) {
 	      			messagebar[messagebar.length - 1].style.background = "orange";
@@ -114,6 +114,14 @@ function showNotif (header, text) {
                         }
                     })
                 }
+	      }else if (lower.includes("@everyone")) {
+	      	setTimeout(() => {
+			if (messagebar.length > 0) {
+	      			messagebar[messagebar.length - 1].style.background = "orange";
+			}else {
+				messagebar[0].style.background = "orange";
+			}
+		}, 25)
 	      }
               if (data.split("-")[0].toLowerCase() != ask.toLowerCase() && data.split("-")[0].toLowerCase() != "guest" && data.split("-")[0].toLowerCase() != "chat-bot") {
 	      	unread++;
