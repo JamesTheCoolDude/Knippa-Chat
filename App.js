@@ -13,7 +13,7 @@ var commands = ["/random num", "/img", "/create", "/algebra"];
 var Fraction = algebra.Fraction;
 var Expression = algebra.Expression;
 var Equation = algebra.Equation;
-function algebra (eq, solve) {
+function solves (eq, solve) {
 	var equations = eq.split("=");
 	var expr1 = algebra.parse(equations[0]); 
 	var expr2 = algebra.parse(equations[1]); 
@@ -26,7 +26,7 @@ function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
 }
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { var ans = eq.split("#"); return algebra(ans[0], ans[1]) }];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { var ans = eq.split("#"); return solves(ans[0], ans[1]) }];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
