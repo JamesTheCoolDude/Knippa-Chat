@@ -66,8 +66,8 @@
     background: linear-gradient(131deg, rgba(87,181,200,1) 6%, rgba(25,106,122,1) 100%);
   }
 .uploaded {
-    max-width:500px;
-    max-height:300px;
+    max-width:600px;
+    max-height:400px;
 }
 #file {
   color: transparent;
@@ -99,5 +99,13 @@
 }
 #file:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+}
+.link {
+    cursor:pointer;
+    color:white;
+    text-decoration:none;
+}
+.link:hover {
+    text-decoration:underline;
 }
 
