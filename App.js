@@ -10,6 +10,9 @@ var sensorRep = ["****", "****", "***"];
 var unread = 0;
 var canTalk = true;
 var commands = ["/random num", "/img", "/create", "/algebra"];
+var Fraction = algebra.Fraction;
+var Expression = algebra.Expression;
+var Equation = algebra.Equation;
 function algebra (eq, solve) {
 	var equations = eq.split("=");
 	var expr1 = algebra.parse(equations[0]); 
