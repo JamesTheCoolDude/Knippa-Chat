@@ -10,7 +10,7 @@ var yt = "";
 var sensor = ["fuck", "shit", "ass"];
 var unread = 0;
 var canTalk = true;
-var commands = ["/random num", "/img", "/create", "/solve", "/doc", "/audio"];
+var commands = ["/random num", "/img", "/create", "/solve", "/doc", "/audio", "/rps"];
 var Fraction = algebra.Fraction;
 var Expression = algebra.Expression;
 var Equation = algebra.Equation;
@@ -20,7 +20,21 @@ function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
 }
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, <img src="https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit" target="_blank">`; }, function (link) {  return `<audio controls><source src="${link}" type="audio/*">Your browser does not support the audio tag.</audio>`; } ];
+function rps (chosen) {
+	var types = ["Rock", "Paper", "Scissors"];
+	var computer = Math.round(Math.random() * types.length).toLowerCase();
+	var c = chosen.toLowerCase();
+	if (c == computer) {
+		return "tie!";
+	}else {
+		if ((c == "rock" && computer == "paper") || (c == "paper" && computer == "scissors") || (c == "scissors" && computer == "rock")) {
+			return "computer wins!"
+		}else {
+			return "you win!";
+		}
+	}
+}
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, <img src="https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit" target="_blank">`; }, function (link) {  return `<audio controls><source src="${link}" type="audio/*">Your browser does not support the audio tag.</audio>`; }, function (type) { return rps(type); } ];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
