@@ -6,10 +6,11 @@ var messagebar = document.getElementsByClassName("message-bar");
 var uploaded = document.getElementsByClassName("uploaded");
 var messages;
 var beginning = [];
+var yt = "";
 var sensor = ["fuck", "shit", "ass"];
 var unread = 0;
 var canTalk = true;
-var commands = ["/random num", "/img", "/create", "/solve", "/doc"];
+var commands = ["/random num", "/img", "/create", "/solve", "/doc", "/audio"];
 var Fraction = algebra.Fraction;
 var Expression = algebra.Expression;
 var Equation = algebra.Equation;
@@ -19,7 +20,7 @@ function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
 }
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit`; } ];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, <img src="https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit" target="_blank">`; } function (link) {  return `<audio controls><source src="${link}" type="audio/*">Your browser does not support the audio tag.</audio>`; } ];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
@@ -72,6 +73,11 @@ function textFile () {
         	input.value = fr.result;
         }
         fr.readAsText(this.files[0]);
+}
+function youtube () {
+	var video = prompt("Enter youtube video url!");
+	var videosrc = video.split("=");
+	yt = '<iframe src="http://www.youtube.com/embed/${videosrc[1]}" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
 }
 (function() {
         var pubnub = new PubNub({
@@ -165,7 +171,7 @@ function textFile () {
 				canPing = true;
 			}, 60000)
 		  }
-		beginning = beginning.join("<br>");
+		beginning = beginning.join("<br>") + yt;
 		messages = messages + beginning;
                 pubnub.publish({
                     channel: channel,
@@ -173,6 +179,7 @@ function textFile () {
                     x: (input.value = '')
                 });
 		 beginning = [];
+		 yt = "";
             canTalk = false;
             input.style.background = "red";
             setTimeout(() => {
