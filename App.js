@@ -20,7 +20,7 @@ function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
 }
-var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, <img src="https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit" target="_blank">`; } function (link) {  return `<audio controls><source src="${link}" type="audio/*">Your browser does not support the audio tag.</audio>`; } ];
+var commandsOutput = [function (num) { return Math.round(Math.random() * (num || 100)); }, function (link) { return "<br><img src="+link+" class='uploaded'>"}, function (name) { createChannel(name); }, function (eq) { return eval(eq).toString(); }, function (text) { return `${text}, <img src="https://docs.google.com/document/d/1qraZmkAxjQS5s3YQopLqsDPDzy2RYdfjKFVWdj1KkgI/edit" target="_blank">`; }, function (link) {  return `<audio controls><source src="${link}" type="audio/*">Your browser does not support the audio tag.</audio>`; } ];
 var commandIndex = 0;
 changeName = () => {
   var promp = prompt("What is your new name?");
