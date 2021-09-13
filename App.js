@@ -77,7 +77,7 @@ function textFile () {
 function youtube () {
 	var video = prompt("Enter youtube video url!");
 	var videosrc = video.split("=");
-	yt = '<iframe src="http://www.youtube.com/embed/${videosrc[1]}" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
+	yt = `<iframe src="http://www.youtube.com/embed/${videosrc[1]}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`;
 }
 (function() {
         var pubnub = new PubNub({
