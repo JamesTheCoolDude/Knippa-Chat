@@ -5,7 +5,7 @@ var input = document.getElementById("input");
 var messagebar = document.getElementsByClassName("message-bar");
 var uploaded = document.getElementsByClassName("uploaded");
 var messages;
-var beginning = "";
+var beginning = [];
 var sensor = ["fuck", "shit", "ass"];
 var unread = 0;
 var canTalk = true;
@@ -32,16 +32,18 @@ function markasread () {
 	unread = 0;
 }
 function previewFile() {
-  var file = document.querySelector('input[type=file]').files[0];
+  var fileImp = document.querySelector('input[type=file]').files;
+for (var i = 0; i < fileImp.length; i++) {
   var reader = new FileReader();
 
   reader.addEventListener("load", function () {
-    beginning = "<img src="+reader.result+" class='uploaded'>";
+    beginning.push("<img src="+reader.result+" class='uploaded'>");
   }, false);
 
   if (file) {
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(document.querySelector('input[type=file]').files[i]);
   }
+}
 }
 setInterval(() => {
 	document.title = "Chat App("+unread+")";
@@ -163,13 +165,14 @@ function textFile () {
 				canPing = true;
 			}, 60000)
 		  }
+		beginning = beginning.join("<br>");
 		messages = messages + beginning;
                 pubnub.publish({
                     channel: channel,
                     message:  messages,
                     x: (input.value = '')
                 });
-		 beginning = "";
+		 beginning = [];
             canTalk = false;
             input.style.background = "red";
             setTimeout(() => {
