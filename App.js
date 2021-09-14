@@ -18,6 +18,7 @@ var sensor = ["fuck", "shit", "ass"];
 var unread = 0;
 var canTalk = true;
 var commands = ["/random num", "/img", "/create", "/solve", "/doc", "/audio", "/rps"];
+var commandsAfter = ["[num]", "[link]", "[channel name]", "[expression]", "", "[audio link]", "[rock, paper, or scissors]"];
 var Fraction = algebra.Fraction;
 var Expression = algebra.Expression;
 var Equation = algebra.Equation;
@@ -26,6 +27,25 @@ var pages = document.getElementById("pages");
 function createChannel (name) {
 	channelCodes.push("8th-knippa-isd-general-"+name);
 	pages.innerHTML += `<option>${name}</option>`;
+}
+for (var i = 0; i < commands.length; i++) {
+	var href = `javascript:input.value = "${commands[i]} ";`;
+	document.getElementById("myDropdown").innerHTML += `<a href="${href}">${commands[i]} ${commandsAfter[i]}</a>`;
+}
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("input");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
 }
 function rps (chosen) {
 	var types = ["Rock", "Paper", "Scissors"];
