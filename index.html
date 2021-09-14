@@ -24,7 +24,16 @@
       </div>
       <div id="box"></div>
       <div id="sending">
-        <input id="input" placeholder="Send Message" />
+        <div id="myDropdown" class="dropdown-content">
+          <input id="input" placeholder="Send Message" onkeyup="filterFunction()">
+          <a href="#about">About</a>
+          <a href="#base">Base</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <a href="#custom">Custom</a>
+          <a href="#support">Support</a>
+          <a href="#tools">Tools</a>
+        </div>
         <button id="button">Send</button>
         <button id="button2" onclick="markasread();">Mark As Read</button>
         <br>
