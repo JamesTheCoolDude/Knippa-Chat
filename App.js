@@ -1,6 +1,9 @@
 var ask = prompt("What is your name?");
 var command = false;
 var canPing = true;
+var loaded = 0;
+var imgs = document.getElementsByTagName("img");
+var iframe = document.getElementsByTagName("iframe");
 var input = document.getElementById("input");
 var messagebar = document.getElementsByClassName("message-bar");
 var uploaded = document.getElementsByClassName("uploaded");
@@ -22,7 +25,7 @@ function createChannel (name) {
 }
 function rps (chosen) {
 	var types = ["Rock", "Paper", "Scissors"];
-	var computer = Math.round(Math.random() * types.length).toLowerCase();
+	var computer = types[Math.round(Math.random() * types.length)].toLowerCase();
 	var c = chosen.toLowerCase();
 	if (c == computer) {
 		return "tie!";
@@ -106,6 +109,7 @@ function youtube () {
         var box = $('box'),
             input = $('input'),
             channel = '8th-knippa-isd-general';
+	var total = imgs.length + iframe.length;
         setInterval(() => {
           channel = channelCodes[pages.selectedIndex];
         }, 1000)
@@ -147,8 +151,10 @@ function youtube () {
               if (data.split("-")[0].toLowerCase() != ask.toLowerCase() && data.split("-")[0].toLowerCase() != "guest" && data.split("-")[0].toLowerCase() != "chat-bot") {
 	      	unread++;
               }
-              box.innerHTML = box.innerHTML + obj.message;
-              box.scrollTop = box.scrollHeight;
+	      setTimeout(() => {
+              	box.innerHTML = box.innerHTML + obj.message;
+              	box.scrollTop = box.scrollHeight;
+	      }, 500)
               document.getElementById("alert").style.display = "none";
             }
         });
