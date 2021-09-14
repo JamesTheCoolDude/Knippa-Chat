@@ -29,7 +29,7 @@ function createChannel (name) {
 	pages.innerHTML += `<option>${name}</option>`;
 }
 for (var i = 0; i < commands.length; i++) {
-	var href = `javascript:input.value = "${commands[i]} ";`;
+	var href = `javascript:input.value = '/${commands[i]} ';`;
 	document.getElementById("myDropdown").innerHTML += `<a href="${href}">${commands[i]} ${commandsAfter[i]}</a>`;
 }
 function filterFunction() {
