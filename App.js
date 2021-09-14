@@ -5,6 +5,7 @@ var loaded = 0;
 var imgs = document.getElementsByTagName("img");
 var iframe = document.getElementsByTagName("iframe");
 var input = document.getElementById("input");
+input.style.display = "block";
 var messagebar = document.getElementsByClassName("message-bar");
 var uploaded = document.getElementsByClassName("uploaded");
 var messages;
